@@ -3,6 +3,8 @@
 
 
 {% block content %}
+{% if user.is_authenticated %}
+
 <h1>Delete {{ post.title }}</h1>
 <br>
 	<br>
@@ -17,6 +19,13 @@
 	<button class="btn btn-danger">Delete</button>
 	
 </div>
+
+
+{% else %}
+
+you are not allowed here
+
+{% endif %}
 
 
 
