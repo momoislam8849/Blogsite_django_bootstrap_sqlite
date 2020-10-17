@@ -5,10 +5,23 @@ from datetime import datetime, date
 
 # Create your models here.
 
+class Category(models.Model):
+	name = models.CharField(max_length=255)
+
+	def __str__(self):
+		return self.name  #shows title in admin panel
+
+
+	def get_absolute_url(self):
+		#return reverse('article_detail', args=(str(self.id)))
+		return reverse('home')
+
+
 class Post(models.Model):
 	title = models.CharField(max_length= 255)
 	author = models.ForeignKey(User, on_delete = models.CASCADE)  #cascade = when the user is dilited all his post will delete
 	body = models.TextField()
+	category = models.CharField(max_length=255, default = 'coding')
 	post_date = models.DateField(auto_now_add = True)
 
 
