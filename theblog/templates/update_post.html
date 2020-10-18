@@ -6,6 +6,8 @@
 
 {% if user.is_authenticated %}
 
+	{% if user.id == post.author.id %}
+
 <h1>Update Post</h1>
 
 <div class="form-group">
@@ -15,6 +17,10 @@
 	<button class="btn btn-dark">Update</button>
 	
 </div>
+
+	{% else %}
+		you are not allowed here
+	{% endif %}
 
 {% else %}
 

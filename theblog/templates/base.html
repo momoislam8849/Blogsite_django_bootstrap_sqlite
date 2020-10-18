@@ -21,6 +21,22 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
+
+              {% if cat_menu %}
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    {% for item in cat_menu %}
+                      <a class="dropdown-item" href="{% url 'category' item|slugify %}">{{item}}</a>
+                    {% endfor %}
+                    
+                  </div>
+              </li>
+              {% endif %}
+
               {% if user.is_authenticated %}
                 <a class="nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
