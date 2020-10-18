@@ -41,7 +41,10 @@
                 <a class="nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
                 <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+                <a class="nav-link" href="{% url 'edit_profile' %}">Profile</a>
                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+
+
               {% else %}
                 <a class="nav-link" href="{% url 'register' %}">Registration</a>
                  <a class="nav-link" href="{% url 'login' %}">Login</a>
