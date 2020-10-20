@@ -24,19 +24,14 @@
 {% endif %}
 <br>
 <hr>
-<br>
+
 {% if post.header_image %}
 <img src="{{post.header_image.url}}" width="700" height="300">
 {% endif %}
 {{ post.body|safe }}
 
-<br>
-<a href="{% url 'home' %}" class="btn btn-dark">Back</a>
-
-<br>
-<br>
+<br><br>
 <hr>
-<br>
 
 <form action="{% url 'like_post' post.pk %}" method="POST">
 	{% csrf_token %}
@@ -60,7 +55,38 @@
 	
 </form>
 
+
+<h1>Comments</h1>
 <br/>
+{% if not post.comments.all %}
+	No Comments Yet 
+	<br>
+	<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+
+{% else %}
+
+<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+<br><br>
+
+	{% for comment in post.comments.all %}
+		<strong>
+			{{ comment.name }} - 
+			{{ comment.date_added }}
+		</strong>
+		<br/>
+		{{ comment.body }}
+		<br/>
+	{% endfor %}
+	<br>
+	<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+
+{% endif %}
+<br>
+<hr>
+<br/>
+
+
+
 <div class="card mb-3">
   <div class="row no-gutters">
     <div class="col-md-2">

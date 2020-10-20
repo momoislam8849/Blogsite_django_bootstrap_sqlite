@@ -6,6 +6,7 @@
 
 {% if user.is_authenticated %}
 <h1>Add Category</h1>
+{% if user.profile.id %}
 
 <div class="form-group">
 <form method="POST">
@@ -14,6 +15,12 @@
 	<button class="btn btn-dark">Submit</button>
 	
 </div>
+{% else %}
+<div class="alert alert-warning" role="alert">
+		   You have to create your profile First!
+
+		</div>
+ {% endif %}
 
 {% else %}
 
