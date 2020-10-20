@@ -6,6 +6,7 @@
 
 {% if user.is_authenticated %}
 <h1>Add Post</h1>
+{% if user.profile.id %}
 
 <div class="form-group">
 <form method="POST" enctype="multipart/form-data">
@@ -20,6 +21,12 @@
 	var name = "{{user.id}}";
 	document.getElementById("uid").value = name;
 </script>
+{% else %}
+<div class="alert alert-warning" role="alert">
+		   You have to create your profile First!
+
+		</div>
+ {% endif %}
 
 {% else %}
 

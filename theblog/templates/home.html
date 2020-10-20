@@ -2,24 +2,41 @@
 
 
 {% block content %}
-<h1>Post</h1>
-
-<ul>
+<center><h1>Post</h1></center>
+<br>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <ul>
 	{% for post in object_list %}
-	<li><a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> - <small><a href="{% url 'category' post.category|slugify %}">{{post.category}}</a></small> - {{ post.author.first_name }} {{ post.author.last_name }} - <small>{{post.post_date}}</small> 
-        {% if user.is_authenticated %}
-        	{% if user.id == post.author.id %}
+<center>
+	<div class="card" style="width: 50rem;">
+		  <div class="card-body">
+		    <h5 class="card-title"><a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a></h5>
+		    <h6 class="card-subtitle mb-2 text-muted"><small><a href="{% url 'category' post.category|slugify %}">{{post.category}}</a></small> - {{ post.author.first_name }} {{ post.author.last_name }} - <small>{{post.post_date}}</small> 
+		    </h6>
+		    <p class="card-text">	{{post.snippet}}</p>
+		    <a href="#" class="card-link"></a>
+		    {% if user.is_authenticated %}
+		     {% if user.id == post.author.id %}
 
-		- <small><a href="{% url 'update_post' post.pk %}">Edit</a></small>
-		<small><a href="{% url 'delete_post' post.pk %}">Delete</a></small>
-		{% endif %}
-		{% endif %}
-	<br>
-	{{post.snippet}}
-	</li>
-	
+		    <button type="button" class="btn btn-dark"><a href="{% url 'update_post' post.pk %}" class="card-link">Edit</a>
+		    </button>
+
+		    <button type="button" class="btn btn-warning"><a href="{% url 'delete_post' post.pk %}" class="card-link">Delete</a>
+		    </button>
+		    {% endif %}
+			{% endif %}
+
+		  </div>
+	</div>
+</center>
+<br>
+
 	{% endfor %}
 			
 </ul>
+  </div>
+</div>
+
 
     {% endblock %}
